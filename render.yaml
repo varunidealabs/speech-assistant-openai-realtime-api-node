@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: speech-assistant-openai-realtime
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: AZURE_OPENAI_API_KEY
+        sync: false
