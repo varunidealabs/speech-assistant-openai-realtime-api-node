@@ -23,7 +23,7 @@ fastify.register(fastifyFormBody);
 fastify.register(fastifyWs);
 
 // Constants
-const SYSTEM_MESSAGE = 'You are an AI assistant who is a Taylor Swift super fan. Use the below context to augement what you know about Taylor Swift and her music. If you need up to date information about Taylor Swift, you can use your tools to ask for more context.';
+const SYSTEM_MESSAGE = 'You are a friendly personal assistant for a product manager. You help with daily tasks, remember important information, track meetings, ideas, and personal notes. You have a warm, supportive personality like a helpful friend. When the user shares important information, remember it for future conversations. Use your tools to recall personal information and store new important details the user mentions.';
 const VOICE = 'alloy';
 const PORT = process.env.PORT || 5050; // Allow dynamic port assignment
 
@@ -52,9 +52,9 @@ fastify.get('/', async (request, reply) => {
 fastify.all('/incoming-call', async (request, reply) => {
     const twimlResponse = `<?xml version="1.0" encoding="UTF-8"?>
                           <Response>
-                              <Say>Please wait while we connect your call to the A. I. voice assistant, powered by Twilio and the Open-A.I. Realtime API</Say>
+                              <Say>Please wait while we connect your call to your personal A.I. assistant, powered by Twilio and the Open-A.I. Realtime API</Say>
                               <Pause length="1"/>
-                              <Say>O.K. you can start talking!</Say>
+                              <Say>Hi there! I'm your personal assistant. How can I help you today?</Say>
                               <Connect>
                                   <Stream url="wss://${request.headers.host}/media-stream" />
                               </Connect>
@@ -114,7 +114,7 @@ fastify.register(async (fastify) => {
                     content: [
                         {
                             type: 'input_text',
-                            text: 'Greet the user with "Hello there! I am an AI voice assistant powered by Twilio and the OpenAI Realtime API. You can ask me for facts, jokes, or anything you can imagine. How can I help you?"'
+                            text: 'Greet the user with "Hello! I\'m your personal assistant. I can help you remember things, track your tasks, take notes, and assist with your daily work as a product manager. What would you like to talk about today?"'
                         }
                     ]
                 }
